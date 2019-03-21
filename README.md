@@ -6,5 +6,7 @@ create .env in root folder, look at config/env/default.js and add all the proces
 example:
 
 > NODE_ENV=localhost
+>
 > PORT=3000
-> SENTRY_DNS='https://dnssentry.lul'
+>
+> SENTRY_DSN='https://dsnsentry.lul'
