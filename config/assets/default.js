@@ -1,8 +1,7 @@
 'use strict'
 
 module.exports = {
-  gulpConfig: ['gulpfile.js'],
-  allJS: ['server.js', 'config/**/*.js', 'src/*.js', 'routes/*.js'],
+  scripts: ['server.js', 'app.js', 'config/**/*.js', 'db/*.js', 'src/**/*.js'],
   public: ['public/**/*.js', 'public/**/*.css'],
   views: ['views/*.jade'],
 }

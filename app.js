@@ -6,8 +6,7 @@ const logger = require('morgan')
 const sentry = require('@sentry/node')
 const config = require('./config/env/default.js')
 
-const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
+const indexRouter = require('./src/routes/index')
 
 const app = express()
 
@@ -32,7 +31,6 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
-app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

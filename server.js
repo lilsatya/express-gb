@@ -6,10 +6,10 @@ require('dotenv').config()
  * Module dependencies.
  */
 
-const app = require('../app')
-const debug = require('debug')('budget-calculator:server')
+const app = require('./app')
+const debug = require('debug')('express-gb:server')
 const http = require('http')
-const config = require('../config/env/default.js')
+const config = require('./config/env/default')
 
 /**
  * Normalize a port into a number, string, or false.

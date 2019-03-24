@@ -9,17 +9,19 @@ import cleanCSS from 'gulp-clean-css'
 import livereload from 'gulp-livereload'
 import del from 'del'
 import gutil from 'gutil'
+import assets from './config/assets/default'
 
 const config = {
   styles: {
     src: 'src/styles/**/*.less',
-    dest: 'assets/styles/'
+    dest: 'bin/styles/'
   },
   scripts: {
-    src: 'src/scripts/**/*.js',
-    dest: 'assets/scripts/'
+    src: assets.scripts,
+    dest: 'bin/scripts/'
   },
-  runScript: 'bin/server.js',
+  runScript: 'server.js',
+
   extensions: 'js html',
   env: {
     NODE_ENV: 'development'
@@ -29,7 +31,7 @@ const config = {
 /*
  * For small tasks you can export arrow functions
  */
-export const clean = () => del([ 'assets' ])
+export const clean = () => del([ 'bin' ])
 
 /*
  * You can also declare named functions and export them as tasks
@@ -56,7 +58,7 @@ export const scripts = () => {
 
 const changedFile = (file, type) => {
   livereload.changed(file.path)
-  gutil.log(gutil.colors.yellow(`${type} changed' (${file.path})`))
+  // gutil.log(`${type} changed' (${file.path})`)
 }
 
 /*
@@ -64,10 +66,10 @@ const changedFile = (file, type) => {
 */
 export const watch = (done) => {
   livereload.listen()
-  gulp.watch(config.scripts.src, scripts)
+  gulp.watch(config.scripts.src)
     .on('change', (file) => changedFile(file, 'JS'))
-  gulp.watch(config.styles.src, styles)
-    .on('change', (file) => changedFile(file, 'CSS'))
+  // gulp.watch(assets.styles, styles)
+  //   .on('change', (file) => changedFile(file, 'CSS'))
 
   done()
 }
@@ -97,6 +99,7 @@ export const run = (done) => {
     nodeArgs: [debugArgument],
     ext: config.extensions,
     env: config.env,
+    exec: 'babel-node',
   })
 
   done()
